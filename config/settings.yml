@@ -7,3 +7,6 @@ rails_tutorial: "http://www.railstutorial.org/book"
 michael_hartl: "http://www.michaelhartl.com/"
 news: "http://news.railstutorial.org/"
 rails_contact: "http://www.railstutorial.org/contact"
+max_num: 50
+max_email: 255
+min_num: 6
