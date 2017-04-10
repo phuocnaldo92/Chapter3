@@ -44,3 +44,7 @@ en:
   the_form_contains: "The form contains"
   error: "error"
   not_found: "Not Found"
+  new_user: "New user?"
+  users: "Users"
+  profile: "Profile"
+  settings: "Settings"
