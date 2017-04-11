@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       log_in user
       remember user
       params[:session][:remember_me] == Settings.checbox_checked ? remember(user) : forget(user)
-      redirect_to user
+      redirect_back_or user
     else
       flash.now[:danger] = I18n.t "invaid"
       render :new
