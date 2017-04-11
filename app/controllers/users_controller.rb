@@ -1,18 +1,11 @@
 class UsersController < ApplicationController
+  
   before_action :logged_in_user, except: [:new, :create, :show]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   before_action :find_user, except: [:index, :new, :create]
 
   def show
-  end
-
-  def index
-    @users = User.paginate page: params[:page]
-  end
-
-  def index
-    @users = User.paginate page: params[:page]
   end
 
   def index
@@ -81,5 +74,4 @@ class UsersController < ApplicationController
       render :error
     end
   end
-
 end
