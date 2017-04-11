@@ -48,3 +48,6 @@ en:
   users: "Users"
   profile: "Profile"
   settings: "Settings"
+  new_user: "New user?"
+  account: "Account"
+  remember: "Remember me on this computer"

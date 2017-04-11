@@ -11,3 +11,5 @@ max_num: 50
 max_email: 255
 min_num: 6
 user_size: 80
+checbox_checked: 1
+password: "password"
