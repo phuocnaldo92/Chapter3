@@ -12,6 +12,10 @@ class UsersController < ApplicationController
     @users = User.paginate page: params[:page]
   end
 
+  def index
+    @users = User.paginate page: params[:page]
+  end
+
   def new
     @user = User.new
   end
@@ -60,13 +64,20 @@ class UsersController < ApplicationController
   end
 
   def correct_user
+<<<<<<< HEAD
+      @user = User.find params[:id]
+      redirect_to(root_url) unless current_user?(@user)
+=======
     @user = User.find_by id: params[:id]
     redirect_to(root_url) unless current_user?(@user)
+>>>>>>> 603367a6ee4700a84f77330c8c6e01d40f662a4f
   end
 
   def admin_user
       redirect_to(root_url) unless current_user.admin?
   end
+<<<<<<< HEAD
+=======
 
   def find_user
     @user = User.find_by id: params[:id]
@@ -74,4 +85,5 @@ class UsersController < ApplicationController
       render :error
     end
   end
+>>>>>>> 603367a6ee4700a84f77330c8c6e01d40f662a4f
 end
