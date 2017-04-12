@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
   
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user, except: [:new, :create, :show]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
+  before_action :find_user, except: [:index, :new, :create]
+
   def show
-    @user = User.find_by id: params[:id]
-    if @user.nil?
-      render :error
-    end
+  end
+
+  def index
+    @users = User.paginate page: params[:page]
   end
 
   def index
@@ -21,23 +23,22 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
-      log_in @user
-      flash[:success] = I18n.t("wellcome2")
-      redirect_to @user
+      UserMailer.account_activation(@user).deliver_now
+      flash[:info] = I18n.t "please_check"
+      redirect_to root_url
     else
       render :new
     end
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    @user.destroy
     flash[:success] = I18n.t("user_deleted")
     redirect_to users_url
   end
 
   def update
-    @user = User.find params[:id]
-    if @user.update_attributes(user_params)
+    if @user.update_attributes user_params
       flash[:success] = I18n.t("profile_updated")
       redirect_to @user
     else
@@ -46,7 +47,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find params[:id]
   end
   
   def logged_in_user
@@ -64,11 +64,26 @@ class UsersController < ApplicationController
   end
 
   def correct_user
+<<<<<<< HEAD
       @user = User.find params[:id]
       redirect_to(root_url) unless current_user?(@user)
+=======
+    @user = User.find_by id: params[:id]
+    redirect_to(root_url) unless current_user?(@user)
+>>>>>>> 603367a6ee4700a84f77330c8c6e01d40f662a4f
   end
 
   def admin_user
       redirect_to(root_url) unless current_user.admin?
   end
+<<<<<<< HEAD
+=======
+
+  def find_user
+    @user = User.find_by id: params[:id]
+    if @user.nil?
+      render :error
+    end
+  end
+>>>>>>> 603367a6ee4700a84f77330c8c6e01d40f662a4f
 end
