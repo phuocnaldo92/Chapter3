@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+<<<<<<< 6563d2f4b467889ad661a3289ccc63b4c2846cdd
+=======
+  
+>>>>>>> chapter 12
   before_action :logged_in_user, except: [:new, :create, :show]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
@@ -13,10 +17,13 @@ class UsersController < ApplicationController
 
   def index
     @users = User.paginate page: params[:page]
+<<<<<<< 6563d2f4b467889ad661a3289ccc63b4c2846cdd
   end
 
   def index
     @users = User.paginate page: params[:page]
+=======
+>>>>>>> chapter 12
   end
 
   def new
@@ -72,7 +79,7 @@ class UsersController < ApplicationController
   end
 
   def admin_user
-    redirect_to(root_url) unless current_user.admin?
+      redirect_to(root_url) unless current_user.admin?
   end
 
   def find_user
@@ -81,5 +88,4 @@ class UsersController < ApplicationController
       render :error
     end
   end
-
 end
