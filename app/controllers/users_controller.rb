@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       UserMailer.account_activation(@user).deliver_now
-      flash[:info] = I18n.t "please_check"
+      flash[:info] = I18n.t("please_check")
       redirect_to root_url
     else
       render :new
@@ -64,20 +64,13 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-<<<<<<< HEAD
-      @user = User.find params[:id]
-      redirect_to(root_url) unless current_user?(@user)
-=======
     @user = User.find_by id: params[:id]
     redirect_to(root_url) unless current_user?(@user)
->>>>>>> 603367a6ee4700a84f77330c8c6e01d40f662a4f
   end
 
   def admin_user
       redirect_to(root_url) unless current_user.admin?
   end
-<<<<<<< HEAD
-=======
 
   def find_user
     @user = User.find_by id: params[:id]
@@ -85,5 +78,4 @@ class UsersController < ApplicationController
       render :error
     end
   end
->>>>>>> 603367a6ee4700a84f77330c8c6e01d40f662a4f
 end
