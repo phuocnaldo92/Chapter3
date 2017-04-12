@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       UserMailer.account_activation(@user).deliver_now
-      flash[:info] = I18n.t "please_check"
+      flash[:info] = I18n.t("please_check")
       redirect_to root_url
     else
       render :new
